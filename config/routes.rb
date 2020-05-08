@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'comments/new'
-  get 'comments/create'
-  get 'comments/edit'
-  get 'comments/update'
-  get 'comments/destroy'
-  get 'cities/show'
   get '/', to: 'landing_page#welcome'
   get 'welcome', to: 'landing_page#welcome'
   get 'welcome/:user', to: 'landing_page#welcome'

@@ -1,9 +1,9 @@
 Projet | The Gossip Project
 --------------------------------------------
 
-Repository contenant le projet du 23ème jour de The Hacking Project
+Repository contenant le projet du 24ème jour de The Hacking Project
 
-Implémentation d'un CRUD complet et CDD de base
+Poursuite du projet avec ajout de login et session
 
 --------------------------------------------
 
