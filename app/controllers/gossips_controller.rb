@@ -1,4 +1,8 @@
 class GossipsController < ApplicationController
+  def index
+    @gossips = Gossip.all
+  end
+
   def show
     @gossip = Gossip.find(params[:id])
   end
@@ -11,7 +15,7 @@ class GossipsController < ApplicationController
   @gossip = Gossip.new(title: params[:title], content: params[:content], user_id: 1) # avec xxx qui sont les données obtenues à partir du formulaire
 
     if @gossip.save
-      redirect_to welcome_path
+      redirect_to gossips_path
     else
       render 'new'
     end
@@ -33,7 +37,7 @@ class GossipsController < ApplicationController
   def destroy
     @gossip = Gossip.find(params[:id])
     @gossip.destroy
-    redirect_to welcome_path
+    redirect_to gossips_path
   end
 
   private
