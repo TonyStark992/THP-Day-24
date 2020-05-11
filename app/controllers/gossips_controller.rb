@@ -1,4 +1,9 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, only: [:new, :create, :show]
+  before_action only: [:edit, :update, :destroy] do |controller|
+    controller.verify_author
+  end
+
   def index
     @gossips = Gossip.all
   end
@@ -12,12 +17,13 @@ class GossipsController < ApplicationController
   end
 
   def create
-  @gossip = Gossip.new(title: params[:title], content: params[:content], user_id: 1) # avec xxx qui sont les données obtenues à partir du formulaire
+  @gossip = Gossip.new(title: params[:title], content: params[:content], user_id: current_user.id)
 
     if @gossip.save
+      flash[:success] = "Potin bien créé !"
       redirect_to gossips_path
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -28,6 +34,7 @@ class GossipsController < ApplicationController
   def update
     @gossip = Gossip.find(params[:id])
     if @gossip.update(gossip_params)
+      flash[:success] = "Potin édité !"
       redirect_to @gossip
     else
       render :edit
@@ -37,6 +44,7 @@ class GossipsController < ApplicationController
   def destroy
     @gossip = Gossip.find(params[:id])
     @gossip.destroy
+    flash[:success] = "Potin supprimé !"
     redirect_to gossips_path
   end
 

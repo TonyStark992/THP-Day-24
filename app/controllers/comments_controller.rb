@@ -1,13 +1,12 @@
-require 'pry'
-
 class CommentsController < ApplicationController
+  before_action :authenticate_user, only: [:new, :create]
+
   def new
 
   end
 
   def create
-    @comment = Comment.new(content: params[:content], user_id: 1, gossip_id: params[:gossip_id])
-
+    @comment = Comment.new(content: params[:content], user_id: current_user.id, gossip_id: params[:gossip_id])
     if @comment.save
       redirect_to gossip_path(params[:gossip_id])
     else

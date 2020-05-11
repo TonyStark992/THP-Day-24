@@ -1,7 +1,7 @@
 <h1>Bienvenue à The Gossip Project !</h1><br/>
 
-<% if params[:user] != nil %>
-<p><strong>Ravi de vous revoir ici, <%= params[:user].capitalize %> !</strong></p>
+<% if current_user %>
+<p><strong>Ravi de vous revoir, <%= current_user.first_name.capitalize %> !</strong></p>
 <% end %>
 
 <p>Retrouvez ici tous les potins de la communauté et partagez les votres avec les autres membres Gossip !</p>
